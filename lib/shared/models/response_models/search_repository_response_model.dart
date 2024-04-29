@@ -1,204 +1,218 @@
+// To parse this JSON data, do
+// final repositoryModel = repositoryModelFromJson(jsonString);
+
 import 'dart:convert';
 
-RepositoryModel repositoryModelFromJson(String str) => RepositoryModel.fromJson(json.decode(str));
+SearchResponseModel searchResponseModelFromJson(String str) =>
+    SearchResponseModel.fromJson(json.decode(str));
 
-String repositoryModelToJson(RepositoryModel data) => json.encode(data.toJson());
+String searchResponseModelToJson(SearchResponseModel data) =>
+    json.encode(data.toJson());
 
-class RepositoryModel {
-    int totalCount;
-    bool incompleteResults;
-    List<Item> items;
+class SearchResponseModel {
+  int? totalCount;
+  bool? incompleteResults;
+  List<Item> items;
 
-    RepositoryModel({
-        required this.totalCount,
-        required this.incompleteResults,
-        required this.items,
-    });
+  SearchResponseModel({
+    this.totalCount,
+    this.incompleteResults,
+    required this.items,
+  });
 
-    factory RepositoryModel.fromJson(Map<String, dynamic> json) => RepositoryModel(
+  factory SearchResponseModel.fromJson(Map<String, dynamic> json) =>
+      SearchResponseModel(
         totalCount: json["total_count"],
         incompleteResults: json["incomplete_results"],
-        items: List<Item>.from(json["items"].map((x) => Item.fromJson(x))),
-    );
+        items: json["items"] == null
+            ? []
+            : List<Item>.from(json["items"].map((x) => Item.fromJson(x))),
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "total_count": totalCount,
         "incomplete_results": incompleteResults,
         "items": List<dynamic>.from(items.map((x) => x.toJson())),
-    };
+      };
 }
 
 class Item {
-    int id;
-    String nodeId;
-    String name;
-    String fullName;
-    Owner owner;
-    bool private;
-    String htmlUrl;
-    String description;
-    bool fork;
-    String url;
-    DateTime createdAt;
-    DateTime updatedAt;
-    DateTime pushedAt;
-    String homepage;
-    int size;
-    int stargazersCount;
-    int watchersCount;
-    String language;
-    int forksCount;
-    int openIssuesCount;
-    String masterBranch;
-    String defaultBranch;
-    int score;
-    String archiveUrl;
-    String assigneesUrl;
-    String blobsUrl;
-    String branchesUrl;
-    String collaboratorsUrl;
-    String commentsUrl;
-    String commitsUrl;
-    String compareUrl;
-    String contentsUrl;
-    String contributorsUrl;
-    String deploymentsUrl;
-    String downloadsUrl;
-    String eventsUrl;
-    String forksUrl;
-    String gitCommitsUrl;
-    String gitRefsUrl;
-    String gitTagsUrl;
-    String gitUrl;
-    String issueCommentUrl;
-    String issueEventsUrl;
-    String issuesUrl;
-    String keysUrl;
-    String labelsUrl;
-    String languagesUrl;
-    String mergesUrl;
-    String milestonesUrl;
-    String notificationsUrl;
-    String pullsUrl;
-    String releasesUrl;
-    String sshUrl;
-    String stargazersUrl;
-    String statusesUrl;
-    String subscribersUrl;
-    String subscriptionUrl;
-    String tagsUrl;
-    String teamsUrl;
-    String treesUrl;
-    String cloneUrl;
-    String mirrorUrl;
-    String hooksUrl;
-    String svnUrl;
-    int forks;
-    int openIssues;
-    int watchers;
-    bool hasIssues;
-    bool hasProjects;
-    bool hasPages;
-    bool hasWiki;
-    bool hasDownloads;
-    bool archived;
-    bool disabled;
-    String visibility;
-    License license;
+  int? id;
+  String? nodeId;
+  String? name;
+  String? fullName;
+  Owner? owner;
+  bool? private;
+  String? htmlUrl;
+  String? description;
+  bool? fork;
+  String? url;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  DateTime? pushedAt;
+  String? homepage;
+  int? size;
+  int? stargazersCount;
+  int? watchersCount;
+  String? language;
+  int? forksCount;
+  int? openIssuesCount;
+  String? masterBranch;
+  String? defaultBranch;
+  double? score;
+  String? archiveUrl;
+  String? assigneesUrl;
+  String? blobsUrl;
+  String? branchesUrl;
+  String? collaboratorsUrl;
+  String? commentsUrl;
+  String? commitsUrl;
+  String? compareUrl;
+  String? contentsUrl;
+  String? contributorsUrl;
+  String? deploymentsUrl;
+  String? downloadsUrl;
+  String? eventsUrl;
+  String? forksUrl;
+  String? gitCommitsUrl;
+  String? gitRefsUrl;
+  String? gitTagsUrl;
+  String? gitUrl;
+  String? issueCommentUrl;
+  String? issueEventsUrl;
+  String? issuesUrl;
+  String? keysUrl;
+  String? labelsUrl;
+  String? languagesUrl;
+  String? mergesUrl;
+  String? milestonesUrl;
+  String? notificationsUrl;
+  String? pullsUrl;
+  String? releasesUrl;
+  String? sshUrl;
+  String? stargazersUrl;
+  String? statusesUrl;
+  String? subscribersUrl;
+  String? subscriptionUrl;
+  String? tagsUrl;
+  String? teamsUrl;
+  String? treesUrl;
+  String? cloneUrl;
+  String? mirrorUrl;
+  String? hooksUrl;
+  String? svnUrl;
+  int? forks;
+  int? openIssues;
+  int? watchers;
+  bool? hasIssues;
+  bool? hasProjects;
+  bool? hasPages;
+  bool? hasWiki;
+  bool? hasDownloads;
+  bool? archived;
+  bool? disabled;
+  String? visibility;
+  License? license;
 
-    Item({
-        required this.id,
-        required this.nodeId,
-        required this.name,
-        required this.fullName,
-        required this.owner,
-        required this.private,
-        required this.htmlUrl,
-        required this.description,
-        required this.fork,
-        required this.url,
-        required this.createdAt,
-        required this.updatedAt,
-        required this.pushedAt,
-        required this.homepage,
-        required this.size,
-        required this.stargazersCount,
-        required this.watchersCount,
-        required this.language,
-        required this.forksCount,
-        required this.openIssuesCount,
-        required this.masterBranch,
-        required this.defaultBranch,
-        required this.score,
-        required this.archiveUrl,
-        required this.assigneesUrl,
-        required this.blobsUrl,
-        required this.branchesUrl,
-        required this.collaboratorsUrl,
-        required this.commentsUrl,
-        required this.commitsUrl,
-        required this.compareUrl,
-        required this.contentsUrl,
-        required this.contributorsUrl,
-        required this.deploymentsUrl,
-        required this.downloadsUrl,
-        required this.eventsUrl,
-        required this.forksUrl,
-        required this.gitCommitsUrl,
-        required this.gitRefsUrl,
-        required this.gitTagsUrl,
-        required this.gitUrl,
-        required this.issueCommentUrl,
-        required this.issueEventsUrl,
-        required this.issuesUrl,
-        required this.keysUrl,
-        required this.labelsUrl,
-        required this.languagesUrl,
-        required this.mergesUrl,
-        required this.milestonesUrl,
-        required this.notificationsUrl,
-        required this.pullsUrl,
-        required this.releasesUrl,
-        required this.sshUrl,
-        required this.stargazersUrl,
-        required this.statusesUrl,
-        required this.subscribersUrl,
-        required this.subscriptionUrl,
-        required this.tagsUrl,
-        required this.teamsUrl,
-        required this.treesUrl,
-        required this.cloneUrl,
-        required this.mirrorUrl,
-        required this.hooksUrl,
-        required this.svnUrl,
-        required this.forks,
-        required this.openIssues,
-        required this.watchers,
-        required this.hasIssues,
-        required this.hasProjects,
-        required this.hasPages,
-        required this.hasWiki,
-        required this.hasDownloads,
-        required this.archived,
-        required this.disabled,
-        required this.visibility,
-        required this.license,
-    });
+  Item({
+    this.id,
+    this.nodeId,
+    this.name,
+    this.fullName,
+    this.owner,
+    this.private,
+    this.htmlUrl,
+    this.description,
+    this.fork,
+    this.url,
+    this.createdAt,
+    this.updatedAt,
+    this.pushedAt,
+    this.homepage,
+    this.size,
+    this.stargazersCount,
+    this.watchersCount,
+    this.language,
+    this.forksCount,
+    this.openIssuesCount,
+    this.masterBranch,
+    this.defaultBranch,
+    this.score,
+    this.archiveUrl,
+    this.assigneesUrl,
+    this.blobsUrl,
+    this.branchesUrl,
+    this.collaboratorsUrl,
+    this.commentsUrl,
+    this.commitsUrl,
+    this.compareUrl,
+    this.contentsUrl,
+    this.contributorsUrl,
+    this.deploymentsUrl,
+    this.downloadsUrl,
+    this.eventsUrl,
+    this.forksUrl,
+    this.gitCommitsUrl,
+    this.gitRefsUrl,
+    this.gitTagsUrl,
+    this.gitUrl,
+    this.issueCommentUrl,
+    this.issueEventsUrl,
+    this.issuesUrl,
+    this.keysUrl,
+    this.labelsUrl,
+    this.languagesUrl,
+    this.mergesUrl,
+    this.milestonesUrl,
+    this.notificationsUrl,
+    this.pullsUrl,
+    this.releasesUrl,
+    this.sshUrl,
+    this.stargazersUrl,
+    this.statusesUrl,
+    this.subscribersUrl,
+    this.subscriptionUrl,
+    this.tagsUrl,
+    this.teamsUrl,
+    this.treesUrl,
+    this.cloneUrl,
+    this.mirrorUrl,
+    this.hooksUrl,
+    this.svnUrl,
+    this.forks,
+    this.openIssues,
+    this.watchers,
+    this.hasIssues,
+    this.hasProjects,
+    this.hasPages,
+    this.hasWiki,
+    this.hasDownloads,
+    this.archived,
+    this.disabled,
+    this.visibility,
+    this.license,
+  });
 
-    factory Item.fromJson(Map<String, dynamic> json) => Item(
+  factory Item.fromJson(Map<String, dynamic> json) => Item(
         id: json["id"],
         nodeId: json["node_id"],
         name: json["name"],
         fullName: json["full_name"],
-        owner: Owner.fromJson(json["owner"]),
+        owner: json["owner"] == null ? null : Owner.fromJson(json["owner"]),
         private: json["private"],
         htmlUrl: json["html_url"],
         description: json["description"],
         fork: json["fork"],
         url: json["url"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-        pushedAt: DateTime.parse(json["pushed_at"]),
+        createdAt: json["created_at"] == null
+            ? null
+            : DateTime.parse(json["created_at"]),
+        updatedAt: json["updated_at"] == null
+            ? null
+            : DateTime.parse(json["updated_at"]),
+        pushedAt: json["pushed_at"] == null
+            ? null
+            : DateTime.parse(json["pushed_at"]),
         homepage: json["homepage"],
         size: json["size"],
         stargazersCount: json["stargazers_count"],
@@ -261,23 +275,24 @@ class Item {
         archived: json["archived"],
         disabled: json["disabled"],
         visibility: json["visibility"],
-        license: License.fromJson(json["license"]),
-    );
+        license:
+            json["license"] == null ? null : License.fromJson(json["license"]),
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "id": id,
         "node_id": nodeId,
         "name": name,
         "full_name": fullName,
-        "owner": owner.toJson(),
+        "owner": owner?.toJson(),
         "private": private,
         "html_url": htmlUrl,
         "description": description,
         "fork": fork,
         "url": url,
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
-        "pushed_at": pushedAt.toIso8601String(),
+        "created_at": createdAt?.toIso8601String(),
+        "updated_at": updatedAt?.toIso8601String(),
+        "pushed_at": pushedAt?.toIso8601String(),
         "homepage": homepage,
         "size": size,
         "stargazers_count": stargazersCount,
@@ -340,88 +355,88 @@ class Item {
         "archived": archived,
         "disabled": disabled,
         "visibility": visibility,
-        "license": license.toJson(),
-    };
+        "license": license?.toJson(),
+      };
 }
 
 class License {
-    String key;
-    String name;
-    String url;
-    String spdxId;
-    String nodeId;
-    String htmlUrl;
+  String? key;
+  String? name;
+  String? url;
+  String? spdxId;
+  String? nodeId;
+  String? htmlUrl;
 
-    License({
-        required this.key,
-        required this.name,
-        required this.url,
-        required this.spdxId,
-        required this.nodeId,
-        required this.htmlUrl,
-    });
+  License({
+    this.key,
+    this.name,
+    this.url,
+    this.spdxId,
+    this.nodeId,
+    this.htmlUrl,
+  });
 
-    factory License.fromJson(Map<String, dynamic> json) => License(
+  factory License.fromJson(Map<String, dynamic> json) => License(
         key: json["key"],
         name: json["name"],
         url: json["url"],
         spdxId: json["spdx_id"],
         nodeId: json["node_id"],
         htmlUrl: json["html_url"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "key": key,
         "name": name,
         "url": url,
         "spdx_id": spdxId,
         "node_id": nodeId,
         "html_url": htmlUrl,
-    };
+      };
 }
 
 class Owner {
-    String login;
-    int id;
-    String nodeId;
-    String avatarUrl;
-    String gravatarId;
-    String url;
-    String receivedEventsUrl;
-    String type;
-    String htmlUrl;
-    String followersUrl;
-    String followingUrl;
-    String gistsUrl;
-    String starredUrl;
-    String subscriptionsUrl;
-    String organizationsUrl;
-    String reposUrl;
-    String eventsUrl;
-    bool siteAdmin;
+  String? login;
+  int? id;
+  String? nodeId;
+  String? avatarUrl;
+  String? gravatarId;
+  String? url;
+  String? receivedEventsUrl;
+  String? type;
+  String? htmlUrl;
+  String? followersUrl;
+  String? followingUrl;
+  String? gistsUrl;
+  String? starredUrl;
+  String? subscriptionsUrl;
+  String? organizationsUrl;
+  String? reposUrl;
+  String? eventsUrl;
+  bool? siteAdmin;
 
-    Owner({
-        required this.login,
-        required this.id,
-        required this.nodeId,
-        required this.avatarUrl,
-        required this.gravatarId,
-        required this.url,
-        required this.receivedEventsUrl,
-        required this.type,
-        required this.htmlUrl,
-        required this.followersUrl,
-        required this.followingUrl,
-        required this.gistsUrl,
-        required this.starredUrl,
-        required this.subscriptionsUrl,
-        required this.organizationsUrl,
-        required this.reposUrl,
-        required this.eventsUrl,
-        required this.siteAdmin,
-    });
+  Owner({
+    this.login,
+    this.id,
+    this.nodeId,
+    this.avatarUrl,
+    this.gravatarId,
+    this.url,
+    this.receivedEventsUrl,
+    this.type,
+    this.htmlUrl,
+    this.followersUrl,
+    this.followingUrl,
+    this.gistsUrl,
+    this.starredUrl,
+    this.subscriptionsUrl,
+    this.organizationsUrl,
+    this.reposUrl,
+    this.eventsUrl,
+    this.siteAdmin,
+  });
 
-    factory Owner.fromJson(Map<String, dynamic> json) => Owner(
+  factory Owner.fromJson(Map<String, dynamic> json) => Owner(
         login: json["login"],
         id: json["id"],
         nodeId: json["node_id"],
@@ -440,9 +455,9 @@ class Owner {
         reposUrl: json["repos_url"],
         eventsUrl: json["events_url"],
         siteAdmin: json["site_admin"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "login": login,
         "id": id,
         "node_id": nodeId,
@@ -461,5 +476,5 @@ class Owner {
         "repos_url": reposUrl,
         "events_url": eventsUrl,
         "site_admin": siteAdmin,
-    };
+      };
 }
