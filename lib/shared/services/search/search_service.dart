@@ -28,4 +28,22 @@ class SearchService {
       );
     }
   }
+
+  // Future<String> getReadmeContent(String owner, String repo) async {
+  //   final response =
+  //       await http.get(Uri.parse('$baseUrl/repos/$owner/$repo/readme'));
+  //   if (response.statusCode == 200) {
+  //     final readme = readmeResponseModelFromJson(response.body);
+  //     // print(readme.content);
+  //     // readme.content!.replaceAll('\n', '');
+  //     final encodedContent =
+  //         readme.content!.replaceAll(RegExp(r'[^A-Za-z0-9+/=]'), '');
+  //     // print(encodedContent);
+  //     final decodedContent = utf8.decode(base64.decode(encodedContent));
+  //     final markdown = markdownToHtml(decodedContent);
+  //     return markdown;
+  //   } else {
+  //     return 'Failed to load data';
+  //   }
+  // }
 }

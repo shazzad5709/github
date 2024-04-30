@@ -10,14 +10,16 @@ class SearchRepoViewModel extends ChangeNotifier {
   static const _pageSize = 30;
   final PagingController<int, RepositoryModel> _pagingController =
       PagingController(firstPageKey: 1);
+  PagingController<int, RepositoryModel> get pagingController =>
+      _pagingController;
 
   RepositoryModel? _selectedRepo;
   RepositoryModel? get selectedRepo => _selectedRepo;
 
-  final SearchService _searchService = GetIt.instance<SearchService>();
+  // String? _readmeContent;
+  // String? get readmeContent => _readmeContent;
 
-  PagingController<int, RepositoryModel> get pagingController =>
-      _pagingController;
+  final SearchService _searchService = GetIt.instance<SearchService>();
 
   bool get loading => _pagingController.value.status != PagingStatus.completed;
 
@@ -36,7 +38,10 @@ class SearchRepoViewModel extends ChangeNotifier {
     _getRepo(query, 1);
   }
 
-  setSelectedRepo(RepositoryModel repo) => _selectedRepo = repo;
+  setSelectedRepo(RepositoryModel repo) {
+    _selectedRepo = repo;
+    // _getReadmeContent(_selectedRepo!.owner!.login!, _selectedRepo!.name!);
+  }
 
   _getRepo(String query, int pageKey) async {
     try {
@@ -59,6 +64,11 @@ class SearchRepoViewModel extends ChangeNotifier {
           RepositoryError(code: 500, message: e.toString());
     }
   }
+
+  // _getReadmeContent(String owner, String repo) async {
+  //   final response = await _searchService.getReadmeContent(owner, repo);
+  //   _readmeContent = response;
+  // }
 
   @override
   void dispose() {

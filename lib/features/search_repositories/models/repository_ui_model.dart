@@ -3,10 +3,11 @@
 
 import 'dart:convert';
 
-RepositoryModel repositoryModelFromJson(String str) => RepositoryModel.fromJson(json.decode(str));
+RepositoryModel repositoryModelFromJson(String str) =>
+    RepositoryModel.fromJson(json.decode(str));
 
-String repositoryModelToJson(RepositoryModel data) => json.encode(data.toJson());
-
+String repositoryModelToJson(RepositoryModel data) =>
+    json.encode(data.toJson());
 
 class RepositoryModel {
   int? id;
@@ -84,6 +85,7 @@ class RepositoryModel {
   bool? archived;
   bool? disabled;
   String? visibility;
+  License? license;
 
   RepositoryModel({
     this.id,
@@ -161,9 +163,11 @@ class RepositoryModel {
     this.archived,
     this.disabled,
     this.visibility,
+    this.license,
   });
 
-  factory RepositoryModel.fromJson(Map<String, dynamic> json) => RepositoryModel(
+  factory RepositoryModel.fromJson(Map<String, dynamic> json) =>
+      RepositoryModel(
         id: json["id"],
         nodeId: json["node_id"],
         name: json["name"],
@@ -245,6 +249,8 @@ class RepositoryModel {
         archived: json["archived"],
         disabled: json["disabled"],
         visibility: json["visibility"],
+        license:
+            json["license"] == null ? null : License.fromJson(json["license"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -323,6 +329,7 @@ class RepositoryModel {
         "archived": archived,
         "disabled": disabled,
         "visibility": visibility,
+        "license": license?.toJson(),
       };
 }
 
@@ -407,5 +414,41 @@ class Owner {
         "repos_url": reposUrl,
         "events_url": eventsUrl,
         "site_admin": siteAdmin,
+      };
+}
+
+class License {
+  String? key;
+  String? name;
+  String? url;
+  String? spdxId;
+  String? nodeId;
+  String? htmlUrl;
+
+  License({
+    this.key,
+    this.name,
+    this.url,
+    this.spdxId,
+    this.nodeId,
+    this.htmlUrl,
+  });
+
+  factory License.fromJson(Map<String, dynamic> json) => License(
+        key: json["key"],
+        name: json["name"],
+        url: json["url"],
+        spdxId: json["spdx_id"],
+        nodeId: json["node_id"],
+        htmlUrl: json["html_url"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "key": key,
+        "name": name,
+        "url": url,
+        "spdx_id": spdxId,
+        "node_id": nodeId,
+        "html_url": htmlUrl,
       };
 }
