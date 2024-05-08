@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:github/constants/text_strings.dart';
 import 'package:github/features/search_repositories/models/repository_ui_model.dart';
 import 'package:github/features/search_repositories/view_model/search_repository_view_model.dart';
 import 'package:go_router/go_router.dart';
@@ -62,14 +63,14 @@ class SearchRepoScreen extends StatelessWidget {
             );
           },
           firstPageErrorIndicatorBuilder: (context) => Center(
-            child: Text(repoViewModel.error?.message ?? 'No data found'),
+            child: Text(repoViewModel.error?.message ?? TextStrings.searchErrorIndicator),
           ),
           newPageErrorIndicatorBuilder: (context) => Center(
-            child: Text(repoViewModel.error?.message ?? 'No data found'),
+            child: Text(repoViewModel.error?.message ?? TextStrings.searchErrorIndicator),
           ),
           noItemsFoundIndicatorBuilder: (context) => const Center(
             child: Text(
-              'No relevant repositories found',
+              TextStrings.searchNoItemsIndicator,
               style: TextStyle(
                 fontSize: 24,
               ),
@@ -77,15 +78,10 @@ class SearchRepoScreen extends StatelessWidget {
           ),
           firstPageProgressIndicatorBuilder: (context) => const Center(
             child: Text(
-              'Find stuff...',
+              TextStrings.searchFirstPageIndicator,
               style: TextStyle(
                 fontSize: 24,
               ),
-            ),
-          ),
-          newPageProgressIndicatorBuilder: (context) => const Center(
-            child: CupertinoActivityIndicator(
-              radius: 16,
             ),
           ),
         ),

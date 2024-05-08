@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:github/constants/text_strings.dart';
 import '../../view_model/search_repository_view_model.dart';
 
 class CSearchBar extends StatelessWidget {
@@ -30,7 +31,7 @@ class CSearchBar extends StatelessWidget {
             _searchFocus.unfocus();
           },
           decoration: const InputDecoration(
-            hintText: 'Search GitHub',
+            hintText: TextStrings.searchBarHint,
             // border only bottom
             border: UnderlineInputBorder(
               borderSide: BorderSide(color: Colors.white),

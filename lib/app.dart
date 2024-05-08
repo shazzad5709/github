@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:github/config/router/router_config.dart';
-import 'package:github/features/search_repositories/view_model/search_repository_view_model.dart';
-import 'package:github/shared/di/locator.dart';
+import 'package:github/constants/text_strings.dart';
 import 'package:provider/provider.dart';
+
+import 'features/search_repositories/view_model/search_repository_view_model.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -12,12 +13,12 @@ class App extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => locator.get<SearchRepoViewModel>(),
+          create: (_) => SearchRepoViewModel(),
         ),
       ],
       child: MaterialApp.router(
         routerConfig: router,
-        title: 'Github',
+        title: TextStrings.appName,
         darkTheme: ThemeData.dark(),
         themeMode: ThemeMode.dark,
         debugShowCheckedModeBanner: false,

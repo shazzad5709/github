@@ -9,6 +9,8 @@ import '../../../shared/data/repo/selected_repo.dart';
 import '../models/commit_ui_model.dart';
 
 class CommitViewModel extends ChangeNotifier {
+  final CommitRepo commitRepo;
+
   static const _pageSize = 30;
   final PagingController<int, CommitModel> _pagingController =
       PagingController(firstPageKey: 1);
@@ -25,13 +27,13 @@ class CommitViewModel extends ChangeNotifier {
 
   List<CommitModel> get commits => _pagingController.value.itemList ?? [];
 
-  CommitViewModel() {
+  CommitViewModel({required this.commitRepo}) {
     _pagingController.addPageRequestListener((pageKey) {});
     _getCommits(1);
   }
 
   _getCommits(int pageKey) {
-    CommitRepo()
+    commitRepo
         .getCommits(
             query: (pageKey == 1) ? '' : '&page=$pageKey',
             owner: selectedRepo.owner!.login ?? '',

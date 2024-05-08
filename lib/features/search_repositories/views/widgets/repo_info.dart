@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:github/constants/text_strings.dart';
 import 'package:github/features/search_repositories/view_model/search_repository_view_model.dart';
 import 'package:github/features/search_repositories/views/widgets/info_row.dart';
 import 'package:provider/provider.dart';
@@ -21,28 +22,28 @@ class RepoInfo extends StatelessWidget {
       child: Column(
         children: [
           InfoRow(
-            title: 'Issues',
+            title: TextStrings.issues,
             value: repo.openIssues.toString(),
             icon: CupertinoIcons.dot_square,
             iconColor: Colors.green,
           ),
           const SizedBox(height: 8),
           InfoRow(
-            title: 'Forks',
+            title: TextStrings.forks,
             value: _formatCount(repo.forksCount!),
             icon: CupertinoIcons.command,
             iconColor: Colors.blue,
           ),
           const SizedBox(height: 8),
           InfoRow(
-            title: 'Watchers',
+            title: TextStrings.watchers,
             value: _formatCount(repo.watchersCount!),
             icon: CupertinoIcons.eye_fill,
             iconColor: Colors.orange,
           ),
           const SizedBox(height: 8),
           InfoRow(
-            title: 'License',
+            title: TextStrings.license,
             value: repo.license?.spdxId ?? 'None',
             icon: CupertinoIcons.book_fill,
             iconColor: Colors.orange,

@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:github/constants/route_paths.dart';
+import 'package:github/constants/text_strings.dart';
 import 'package:go_router/go_router.dart';
-// import 'package:provider/provider.dart';
-
-// import '../view_model/search_repository_view_model.dart';
 import 'widgets/repo_header.dart';
 import 'widgets/repo_info.dart';
 
@@ -13,8 +11,6 @@ class RepositoryDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // SearchRepoViewModel repoViewModel = context.watch<SearchRepoViewModel>();
-
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.black,
@@ -39,7 +35,7 @@ class RepositoryDetailsScreen extends StatelessWidget {
                       ),
                       SizedBox(width: 8),
                       Text(
-                        'Commits',
+                        TextStrings.commits,
                         style: TextStyle(
                           letterSpacing: 1.2,
                           color: Colors.blue,

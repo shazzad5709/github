@@ -1,12 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:github/constants/text_strings.dart';
 import 'package:github/features/commits/models/commit_ui_model.dart';
 import 'package:github/features/commits/view_model/commit_view_model.dart';
 import 'package:github/features/commits/views/widgets/list_tile.dart';
-import 'package:github/shared/di/locator.dart';
+import 'package:github/shared/data/repo/commit_repo/commit_repo_impl.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
-import 'package:intl/intl.dart';
+
+import '../../../shared/data/source/remote/commit_api/commit_api_impl.dart';
 
 class CommitScreenWithProvider extends StatelessWidget {
   const CommitScreenWithProvider({super.key});
@@ -14,7 +15,8 @@ class CommitScreenWithProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => locator.get<CommitViewModel>(),
+      create: (_) => CommitViewModel(
+          commitRepo: CommitRepoImpl(commitApi: CommitApiImpl())),
       child: const CommitScreen(),
     );
   }
@@ -30,12 +32,13 @@ class CommitScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Commits',
+          TextStrings.commits,
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
         ),
         backgroundColor: Colors.black,
+        scrolledUnderElevation: 0,
       ),
       backgroundColor: Colors.black,
       body: PagedListView<int, CommitModel>(
@@ -52,7 +55,7 @@ class CommitScreen extends StatelessWidget {
           },
           newPageErrorIndicatorBuilder: (context) => const Center(
             child: Text(
-              'Failed to load commits',
+              TextStrings.commitErrorIndicator,
               style: TextStyle(
                 fontSize: 24,
               ),
@@ -60,23 +63,10 @@ class CommitScreen extends StatelessWidget {
           ),
           noItemsFoundIndicatorBuilder: (context) => const Center(
             child: Text(
-              'No relevant repositories found',
+              TextStrings.commitNoItemsIndicator,
               style: TextStyle(
                 fontSize: 24,
               ),
-            ),
-          ),
-          firstPageProgressIndicatorBuilder: (context) => const Center(
-            child: Text(
-              'Find stuff...',
-              style: TextStyle(
-                fontSize: 24,
-              ),
-            ),
-          ),
-          newPageProgressIndicatorBuilder: (context) => const Center(
-            child: CupertinoActivityIndicator(
-              radius: 16,
             ),
           ),
         ),

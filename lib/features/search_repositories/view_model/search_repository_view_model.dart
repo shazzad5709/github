@@ -17,12 +17,9 @@ class SearchRepoViewModel extends ChangeNotifier {
   RepositoryModel? _selectedRepo;
   RepositoryModel? get selectedRepo => _selectedRepo;
 
-  // get access to the selected_repo_notifier.dart
   final SelectedRepoNotifier _selectedRepoNotifier =
       GetIt.instance<SelectedRepoNotifier>();
 
-  // String? _readmeContent;
-  // String? get readmeContent => _readmeContent;
 
   final SearchService _searchService = GetIt.instance<SearchService>();
 
@@ -46,7 +43,6 @@ class SearchRepoViewModel extends ChangeNotifier {
   setSelectedRepo(RepositoryModel repo) {
     _selectedRepo = repo;
     _selectedRepoNotifier.setSelectedRepo(repo);
-    // _getReadmeContent(_selectedRepo!.owner!.login!, _selectedRepo!.name!);
   }
 
   _getRepo(String query, int pageKey) async {
@@ -70,11 +66,6 @@ class SearchRepoViewModel extends ChangeNotifier {
           RepositoryError(code: 500, message: e.toString());
     }
   }
-
-  // _getReadmeContent(String owner, String repo) async {
-  //   final response = await _searchService.getReadmeContent(owner, repo);
-  //   _readmeContent = response;
-  // }
 
   @override
   void dispose() {

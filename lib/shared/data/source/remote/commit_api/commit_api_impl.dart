@@ -2,9 +2,11 @@ import 'dart:convert';
 
 import 'package:github/shared/data/models/response_models/commit_response_model.dart';
 
-import '../../../../network/http.dart';
+import '../../../../../network/http.dart';
+import 'commit_api.dart';
 
-class CommitApi {
+class CommitApiImpl implements CommitApi {
+  @override
   Future<Object> getCommits(
     String owner,
     String repo,

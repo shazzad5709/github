@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:github/constants/text_strings.dart';
 
 class CommitListTile extends StatelessWidget {
   const CommitListTile({
@@ -76,10 +77,19 @@ class CommitListTile extends StatelessWidget {
                             ),
                             const SizedBox(width: 8),
                             Text(
-                              '$author authored',
+                              author,
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
                               style: const TextStyle(
+                                fontSize: 16,
+                              ),
+                            ),
+                            const SizedBox(width: 6),
+                            const Text(
+                              TextStrings.commitAuthored,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                              style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.white60,
                               ),
