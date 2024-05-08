@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:github/constants/api_constant.dart';
 import 'package:github/features/search_repositories/models/repository_ui_model.dart';
-import 'package:github/shared/models/response_models/search_repository_response_model.dart';
+import 'package:github/shared/data/models/response_models/search_repository_response_model.dart';
 import 'package:github/utils/exceptions/error.dart';
 import 'package:http/http.dart' as http;
 

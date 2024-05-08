@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 
+import '../../../constants/route_paths.dart';
 import 'widgets/list_tile.dart';
 import 'widgets/search_bar.dart';
 
@@ -56,7 +57,7 @@ class SearchRepoScreen extends StatelessWidget {
               item: item,
               onTap: () {
                 repoViewModel.setSelectedRepo(item);
-                context.go('/repo_details');
+                context.go('/${RoutePaths.repoDetails}');
               },
             );
           },

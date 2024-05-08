@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:github/constants/route_paths.dart';
+import 'package:go_router/go_router.dart';
 // import 'package:provider/provider.dart';
 
 // import '../view_model/search_repository_view_model.dart';
@@ -16,12 +19,37 @@ class RepositoryDetailsScreen extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.black,
         ),
-        body: const SingleChildScrollView(
+        body: SingleChildScrollView(
           child: Column(
             children: [
-              RepoHeader(),
-              SizedBox(height: 16),
-              RepoInfo(),
+              const RepoHeader(),
+              const SizedBox(height: 16),
+              const RepoInfo(),
+              const SizedBox(height: 16),
+              InkWell(
+                onTap: () => context.go('/${RoutePaths.commits}'),
+                child: const Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                  child: Row(
+                    children: [
+                      Icon(
+                        CupertinoIcons.arrow_counterclockwise,
+                        color: Colors.white,
+                      ),
+                      SizedBox(width: 8),
+                      Text(
+                        'Commits',
+                        style: TextStyle(
+                          letterSpacing: 1.2,
+                          color: Colors.blue,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              )
             ],
           ),
         ));

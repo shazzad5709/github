@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:github/shared/services/search/search_service.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
+import '../../../shared/data/repo/selected_repo.dart';
 import '../models/repository_error.dart';
 import '../models/repository_ui_model.dart';
 
@@ -15,6 +16,10 @@ class SearchRepoViewModel extends ChangeNotifier {
 
   RepositoryModel? _selectedRepo;
   RepositoryModel? get selectedRepo => _selectedRepo;
+
+  // get access to the selected_repo_notifier.dart
+  final SelectedRepoNotifier _selectedRepoNotifier =
+      GetIt.instance<SelectedRepoNotifier>();
 
   // String? _readmeContent;
   // String? get readmeContent => _readmeContent;
@@ -40,6 +45,7 @@ class SearchRepoViewModel extends ChangeNotifier {
 
   setSelectedRepo(RepositoryModel repo) {
     _selectedRepo = repo;
+    _selectedRepoNotifier.setSelectedRepo(repo);
     // _getReadmeContent(_selectedRepo!.owner!.login!, _selectedRepo!.name!);
   }
 
