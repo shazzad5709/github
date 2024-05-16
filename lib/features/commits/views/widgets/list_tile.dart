@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:github/constants/text_strings.dart';
+import 'package:githubdummy/constants/text_strings.dart';
 
 class CommitListTile extends StatelessWidget {
   const CommitListTile({
@@ -28,8 +28,7 @@ class CommitListTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
+            padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
             child: ConstrainedBox(
               constraints: const BoxConstraints(
                 maxWidth: double.infinity,
@@ -41,61 +40,9 @@ class CommitListTile extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                message,
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 16),
-                            Icon(
-                              verified
-                                  ? CupertinoIcons.check_mark
-                                  : CupertinoIcons.xmark,
-                              size: 16,
-                              color: verified ? Colors.green : Colors.red,
-                            ),
-                            const SizedBox(width: 4),
-                            Text(time),
-                          ],
-                        ),
+                        _commitDetails(),
                         const SizedBox(height: 4),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 8,
-                              backgroundColor: Colors.black,
-                              backgroundImage: avatarUrl != ''
-                                  ? NetworkImage(avatarUrl)
-                                  : null,
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                              author,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                              style: const TextStyle(
-                                fontSize: 16,
-                              ),
-                            ),
-                            const SizedBox(width: 6),
-                            const Text(
-                              TextStrings.commitAuthored,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white60,
-                              ),
-                            ),
-                          ],
-                        ),
+                        _authorInfo(),
                       ],
                     ),
                   ),
@@ -107,6 +54,67 @@ class CommitListTile extends StatelessWidget {
             thickness: 0.2,
           ),
         ],
+      ),
+    );
+  }
+
+  _commitDetails() {
+    return Row(
+      children: [
+        Expanded(
+          child: _singleLineBrightText(message),
+        ),
+        const SizedBox(width: 16),
+        Icon(
+          verified ? CupertinoIcons.checkmark_alt : CupertinoIcons.xmark,
+          size: 16,
+          color: verified ? Colors.green : Colors.red,
+        ),
+        const SizedBox(width: 4),
+        Text(time),
+      ],
+    );
+  }
+
+  _authorInfo() {
+    return Row(
+      children: [
+        _avatar(avatarUrl),
+        const SizedBox(width: 8),
+        _singleLineBrightText(author),
+        const SizedBox(width: 6),
+        _singleLineLightText(TextStrings.commitAuthored),
+      ],
+    );
+  }
+
+  _avatar(String avatarUrl) {
+    return CircleAvatar(
+      radius: 8,
+      backgroundColor: Colors.black,
+      backgroundImage: avatarUrl != '' ? NetworkImage(avatarUrl) : null,
+    );
+  }
+
+  _singleLineLightText(String text) {
+    return Text(
+      text,
+      overflow: TextOverflow.ellipsis,
+      maxLines: 1,
+      style: const TextStyle(
+        color: Colors.white60,
+        fontSize: 16,
+      ),
+    );
+  }
+
+  _singleLineBrightText(String text) {
+    return Text(
+      text,
+      overflow: TextOverflow.ellipsis,
+      maxLines: 1,
+      style: const TextStyle(
+        fontSize: 16,
       ),
     );
   }

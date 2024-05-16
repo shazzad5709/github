@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:github/shared/di/locator.dart';
+import 'package:githubdummy/shared/di/locator.dart';
 import 'app.dart';
 import './network/http.dart';
 

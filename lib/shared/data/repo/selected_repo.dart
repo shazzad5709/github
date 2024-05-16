@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:github/features/search_repositories/models/repository_ui_model.dart';
+import 'package:githubdummy/features/search_repositories/models/repository_ui_model.dart';
 
 class SelectedRepoNotifier extends ChangeNotifier {
   RepositoryModel _selectedRepo = RepositoryModel();

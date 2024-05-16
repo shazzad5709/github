@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:github/shared/services/search/search_service.dart';
+import 'package:githubdummy/shared/services/search/search_service.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../shared/data/repo/selected_repo.dart';
@@ -11,25 +11,20 @@ class SearchRepoViewModel extends ChangeNotifier {
   static const _pageSize = 30;
   final PagingController<int, RepositoryModel> _pagingController =
       PagingController(firstPageKey: 1);
-  PagingController<int, RepositoryModel> get pagingController =>
-      _pagingController;
+  PagingController<int, RepositoryModel> get pagingController => _pagingController;
 
   RepositoryModel? _selectedRepo;
   RepositoryModel? get selectedRepo => _selectedRepo;
 
-  final SelectedRepoNotifier _selectedRepoNotifier =
-      GetIt.instance<SelectedRepoNotifier>();
-
+  final SelectedRepoNotifier _selectedRepoNotifier = GetIt.instance<SelectedRepoNotifier>();
 
   final SearchService _searchService = GetIt.instance<SearchService>();
 
   bool get loading => _pagingController.value.status != PagingStatus.completed;
 
-  List<RepositoryModel> get repositories =>
-      _pagingController.value.itemList ?? [];
+  List<RepositoryModel> get repositories => _pagingController.value.itemList ?? [];
 
-  RepositoryError? get error =>
-      _pagingController.value.error as RepositoryError?;
+  RepositoryError? get error => _pagingController.value.error as RepositoryError?;
 
   SearchRepoViewModel() {
     _pagingController.addPageRequestListener((pageKey) {});
@@ -47,8 +42,7 @@ class SearchRepoViewModel extends ChangeNotifier {
 
   _getRepo(String query, int pageKey) async {
     try {
-      final response = await _searchService
-          .search((pageKey == 1) ? query : '$query&page=$pageKey');
+      final response = await _searchService.search((pageKey == 1) ? query : '$query&page=$pageKey');
       if (response is List<RepositoryModel>) {
         final isLastPage = response.length < _pageSize;
         if (isLastPage) {
@@ -58,12 +52,10 @@ class SearchRepoViewModel extends ChangeNotifier {
           _pagingController.appendPage(response, nextPageKey);
         }
       } else {
-        _pagingController.error =
-            RepositoryError(code: 500, message: response.toString());
+        _pagingController.error = RepositoryError(code: 500, message: response.toString());
       }
     } catch (e) {
-      _pagingController.error =
-          RepositoryError(code: 500, message: e.toString());
+      _pagingController.error = RepositoryError(code: 500, message: e.toString());
     }
   }
 

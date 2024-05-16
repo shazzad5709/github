@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:github/constants/text_strings.dart';
-import 'package:github/features/search_repositories/view_model/search_repository_view_model.dart';
-import 'package:github/features/search_repositories/views/widgets/info_row.dart';
+import 'package:githubdummy/constants/text_strings.dart';
+import 'package:githubdummy/features/search_repositories/view_model/search_repository_view_model.dart';
+import 'package:githubdummy/features/search_repositories/views/widgets/info_row.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/repository_ui_model.dart';
@@ -49,49 +49,42 @@ class RepoInfo extends StatelessWidget {
             iconColor: Colors.orange,
           ),
           const SizedBox(height: 8),
-          // branch
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            textBaseline: TextBaseline.ideographic,
-            children: [
-              Row(
-                textBaseline: TextBaseline.ideographic,
-                children: [
-                  const Icon(
-                    CupertinoIcons.arrow_branch,
-                    color: Colors.white60,
-                    size: 24,
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    repo.defaultBranch ?? '',
-                    style: const TextStyle(
-                      fontSize: 20,
-                      color: Colors.white60,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  const Icon(
-                    Icons.check,
-                    color: Colors.green,
-                  )
-                ],
-              ),
-              const SizedBox(width: 8),
-              // TextButton(
-              //   onPressed: () {},
-              //   child: const Text(
-              //     'CHANGE BRANCH',
-              //     style: TextStyle(
-              //       color: Colors.blue,
-              //       fontSize: 16,
-              //     ),
-              //   ),
-              // ),
-            ],
-          ),
+          _branch(repo),
         ],
       ),
+    );
+  }
+
+  Row _branch(RepositoryModel repo) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      textBaseline: TextBaseline.ideographic,
+      children: [
+        Row(
+          textBaseline: TextBaseline.ideographic,
+          children: [
+            const Icon(
+              CupertinoIcons.arrow_branch,
+              color: Colors.white60,
+              size: 24,
+            ),
+            const SizedBox(width: 8),
+            Text(
+              repo.defaultBranch ?? '',
+              style: const TextStyle(
+                fontSize: 20,
+                color: Colors.white60,
+              ),
+            ),
+            const SizedBox(width: 8),
+            const Icon(
+              Icons.check,
+              color: Colors.green,
+            )
+          ],
+        ),
+        const SizedBox(width: 8),
+      ],
     );
   }
 

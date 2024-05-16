@@ -1,4 +1,4 @@
-import 'package:github/shared/data/repo/commit_repo/commit_repo.dart';
+import 'package:githubdummy/shared/data/repo/commit_repo/commit_repo.dart';
 import '../../source/remote/commit_api/commit_api.dart';
 
 class CommitRepoImpl implements CommitRepo {

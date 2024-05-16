@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:github/shared/data/models/response_models/commit_response_model.dart';
+import 'package:githubdummy/shared/data/models/response_models/commit_response_model.dart';
 
 import '../../../../../network/http.dart';
 import 'commit_api.dart';

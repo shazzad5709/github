@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:github/constants/text_strings.dart';
-import 'package:github/features/search_repositories/models/repository_ui_model.dart';
-import 'package:github/features/search_repositories/view_model/search_repository_view_model.dart';
+import 'package:githubdummy/config/router/router_config.dart';
+import 'package:githubdummy/constants/text_strings.dart';
+import 'package:githubdummy/features/search_repositories/models/repository_ui_model.dart';
+import 'package:githubdummy/features/search_repositories/view_model/search_repository_view_model.dart';
 import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 
-import '../../../constants/route_paths.dart';
 import 'widgets/list_tile.dart';
 import 'widgets/search_bar.dart';
 
@@ -58,7 +58,7 @@ class SearchRepoScreen extends StatelessWidget {
               item: item,
               onTap: () {
                 repoViewModel.setSelectedRepo(item);
-                context.go('/${RoutePaths.repoDetails}');
+                context.pushNamed(AppRoute.repoDetails);
               },
             );
           },

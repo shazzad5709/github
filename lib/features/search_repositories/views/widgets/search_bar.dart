@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:github/constants/text_strings.dart';
+import 'package:githubdummy/constants/text_strings.dart';
 import '../../view_model/search_repository_view_model.dart';
 
 class CSearchBar extends StatelessWidget {

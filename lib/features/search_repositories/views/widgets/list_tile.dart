@@ -20,45 +20,15 @@ class CListTile extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
+            padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 8,
-                      backgroundImage: item.owner?.avatarUrl != null
-                          ? NetworkImage(item.owner!.avatarUrl!)
-                          : null,
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      item.owner?.login ?? '',
-                      style: const TextStyle(
-                        color: Colors.white60,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
+                _ownerInfo(),
                 const SizedBox(height: 4),
-                Text(
-                  item.name ?? '',
-                  style: const TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
+                _repoName(),
                 const SizedBox(height: 4),
-                Text(
-                  item.description ?? '',
-                  style: const TextStyle(
-                    color: Colors.white60,
-                    fontSize: 16,
-                  ),
-                ),
+                _singleLineLightText(item.description ?? ''),
                 const SizedBox(height: 6),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -71,13 +41,9 @@ class CListTile extends StatelessWidget {
                           size: 16,
                         ),
                         const SizedBox(width: 8),
-                        Text(
-                          '${(item.stargazersCount!.toInt() / 1000).toStringAsFixed(1)}k',
-                          style: const TextStyle(
-                            color: Colors.white60,
-                            fontSize: 16,
-                          ),
-                        ),
+                        _singleLineLightText(item.stargazersCount != null
+                            ? '${(item.stargazersCount!.toInt() / 1000).toStringAsFixed(1)}k'
+                            : ''),
                         const SizedBox(width: 16),
                         const Icon(
                           CupertinoIcons.circle_fill,
@@ -85,13 +51,7 @@ class CListTile extends StatelessWidget {
                           size: 16,
                         ),
                         const SizedBox(width: 8),
-                        Text(
-                          item.language ?? '',
-                          style: const TextStyle(
-                            color: Colors.white60,
-                            fontSize: 16,
-                          ),
-                        ),
+                        _singleLineLightText(item.language ?? ''),
                       ],
                     )
                   ],
@@ -103,6 +63,46 @@ class CListTile extends StatelessWidget {
             thickness: 0.5,
           ),
         ],
+      ),
+    );
+  }
+
+  Text _repoName() {
+    return Text(
+      item.name ?? '',
+      style: const TextStyle(
+        fontSize: 22,
+        fontWeight: FontWeight.w700,
+      ),
+    );
+  }
+
+  Row _ownerInfo() {
+    return Row(
+      children: [
+        CircleAvatar(
+          radius: 8,
+          backgroundImage:
+              item.owner?.avatarUrl != null ? NetworkImage(item.owner!.avatarUrl!) : null,
+        ),
+        const SizedBox(width: 8),
+        Text(
+          item.owner?.login ?? '',
+          style: const TextStyle(
+            color: Colors.white60,
+            fontSize: 16,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Text _singleLineLightText(String text) {
+    return Text(
+      text,
+      style: const TextStyle(
+        color: Colors.white60,
+        fontSize: 16,
       ),
     );
   }

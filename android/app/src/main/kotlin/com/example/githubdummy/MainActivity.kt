@@ -1,4 +1,4 @@
-package com.example.github
+package com.example.githubdummy
 
 import io.flutter.embedding.android.FlutterActivity
 

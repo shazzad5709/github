@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:github/constants/text_strings.dart';
-import 'package:github/features/commits/models/commit_ui_model.dart';
-import 'package:github/features/commits/view_model/commit_view_model.dart';
-import 'package:github/features/commits/views/widgets/list_tile.dart';
-import 'package:github/shared/data/repo/commit_repo/commit_repo_impl.dart';
+import 'package:githubdummy/constants/text_strings.dart';
+import 'package:githubdummy/features/commits/models/commit_ui_model.dart';
+import 'package:githubdummy/features/commits/view_model/commit_view_model.dart';
+import 'package:githubdummy/features/commits/views/widgets/list_tile.dart';
+import 'package:githubdummy/shared/data/repo/commit_repo/commit_repo_impl.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 
@@ -15,8 +15,7 @@ class CommitScreenWithProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => CommitViewModel(
-          commitRepo: CommitRepoImpl(commitApi: CommitApiImpl())),
+      create: (_) => CommitViewModel(commitRepo: CommitRepoImpl(commitApi: CommitApiImpl())),
       child: const CommitScreen(),
     );
   }
