@@ -3,11 +3,11 @@ import 'package:githubdummy/constants/text_strings.dart';
 import 'package:githubdummy/features/commits/models/commit_ui_model.dart';
 import 'package:githubdummy/features/commits/view_model/commit_view_model.dart';
 import 'package:githubdummy/features/commits/views/widgets/list_tile.dart';
-import 'package:githubdummy/shared/data/repo/commit_repo/commit_repo_impl.dart';
+import 'package:githubdummy/core/data/repo/commit_repo/commit_repo_impl.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 
-import '../../../shared/data/source/remote/commit_api/commit_api_impl.dart';
+import '../../../core/data/source/remote/commit_api/commit_api_impl.dart';
 
 class CommitScreenWithProvider extends StatelessWidget {
   const CommitScreenWithProvider({super.key});

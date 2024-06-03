@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:githubdummy/features/search_repositories/models/repository_ui_model.dart';
-import 'package:githubdummy/shared/data/repo/commit_repo/commit_repo.dart';
+import 'package:githubdummy/core/data/repo/commit_repo/commit_repo.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import '../../../shared/data/repo/selected_repo.dart';
+import '../../../core/data/repo/selected_repo.dart';
 import '../models/commit_ui_model.dart';
 
 class CommitViewModel extends ChangeNotifier {
@@ -16,9 +16,6 @@ class CommitViewModel extends ChangeNotifier {
   PagingController<int, CommitModel> get pagingController => _pagingController;
 
   final RepositoryModel selectedRepo = GetIt.instance<SelectedRepoNotifier>().selectedRepo;
-
-  // CommitModel? _selectedCommit;
-  // CommitModel? get selectedCommit => _selectedCommit;
 
   bool get loading => _pagingController.value.status != PagingStatus.completed;
 

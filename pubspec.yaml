@@ -32,8 +32,12 @@ dependencies:
   flutter_web_auth_2: ^2.2.1
   github: ^9.24.0
   oauth2_client: ^3.2.2
+  shared_preferences: ^2.2.3
+  get_storage: ^2.1.1
+  cached_network_image: ^3.3.1
 
 dev_dependencies:
+  flutter_native_splash: ^2.4.0
   flutter_test:
     sdk: flutter
 
@@ -49,6 +53,27 @@ flutter:
 
   assets:
     - assets/logo/github-mark/
+    - assets/images/
+
+
+  fonts:
+    - family: SFProDisplay
+      fonts:
+        - asset: assets/fonts/SFProDisplay-Regular.ttf
+        - asset: assets/fonts/SFProDisplay-Bold.ttf
+          weight: 700
+    - family: SFProText
+      fonts:
+        - asset: assets/fonts/SFProText-Regular.ttf
+        - asset: assets/fonts/SFProText-Bold.ttf
+          weight: 700
+    - family: GoogleSans
+      fonts:
+        - asset: assets/fonts/GoogleSans-Regular.ttf
+        - asset: assets/fonts/GoogleSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/GoogleSans-Medium.ttf
+          weight: 600
 
   # To add assets to your application, add an assets section, like this:
   # assets:

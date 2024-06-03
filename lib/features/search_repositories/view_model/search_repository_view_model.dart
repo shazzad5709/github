@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:githubdummy/shared/services/search/search_service.dart';
+import 'package:githubdummy/core/services/search/search_service.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
-import '../../../shared/data/repo/selected_repo.dart';
+import '../../../core/data/repo/selected_repo.dart';
 import '../models/repository_error.dart';
 import '../models/repository_ui_model.dart';
 

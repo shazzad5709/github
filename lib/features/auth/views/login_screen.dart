@@ -2,15 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:githubdummy/config/router/router_config.dart';
 import 'package:githubdummy/constants/image_url.dart';
 import 'package:githubdummy/constants/text_strings.dart';
-import 'package:githubdummy/features/auth/models/authenticated_user_model.dart';
 import 'package:githubdummy/features/auth/view_model/auth_view_model.dart';
-import 'package:githubdummy/shared/di/locator.dart';
-import 'package:githubdummy/shared/services/auth/auth_service.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

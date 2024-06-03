@@ -33,4 +33,8 @@ class TextStrings {
   static const String followers = 'followers';
   static const String following = 'following';
   static const String signOut = 'Sign out';
+
+  // shared preferences
+  static const String ACCESS_TOKEN = 'access_token';
+  static const String USER = 'user';
 }
