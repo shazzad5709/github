@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:githubdummy/widgets/alert_dialog_view.dart';
 import 'package:githubdummy/widgets/app_bar_view.dart';
 import 'package:githubdummy/widgets/check_box_view.dart';

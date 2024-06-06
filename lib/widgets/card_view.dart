@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:github/github.dart';
 import 'package:githubdummy/constants/text_strings.dart';
 import 'package:githubdummy/features/profile/view_model/profile_view_model.dart';
+import 'package:githubdummy/widgets/circular_avatar_view.dart';
+import 'package:githubdummy/widgets/secondary_button_view.dart';
 
 class CardView extends StatelessWidget {
   const CardView({
@@ -25,9 +27,10 @@ class CardView extends StatelessWidget {
         children: [
           Row(
             children: [
-              CircleAvatar(
-                radius: 40,
-                backgroundImage: NetworkImage(user.avatarUrl!),
+              CircularAvatarView(
+                imageUrl: user.avatarUrl!,
+                height: 80,
+                width: 80,
               ),
               const SizedBox(width: 16),
               _buildHandle(user)
@@ -40,7 +43,7 @@ class CardView extends StatelessWidget {
           _buildFollowersAndFollowing(user),
           const SizedBox(height: 196),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 64.0),
+            padding: const EdgeInsets.symmetric(horizontal: 32.0),
             child: _buildLogoutButton(profileViewModel),
           ),
         ],
@@ -48,25 +51,10 @@ class CardView extends StatelessWidget {
     );
   }
 
-  OutlinedButton _buildLogoutButton(ProfileViewModel profileViewModel) {
-    return OutlinedButton(
+  SecondaryButtonView _buildLogoutButton(ProfileViewModel profileViewModel) {
+    return SecondaryButtonView(
       onPressed: profileViewModel.logout,
-      style: ElevatedButton.styleFrom(
-        foregroundColor: Colors.white,
-        minimumSize: const Size.fromHeight(50),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-          side: const BorderSide(color: Colors.white, width: 100),
-        ),
-      ),
-      child: Text(
-        TextStrings.signOut.toUpperCase(),
-        style: const TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w400,
-          letterSpacing: 0.5,
-        ),
-      ),
+      text: 'Sign Out from Github'.toUpperCase(),
     );
   }
 

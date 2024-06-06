@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class AppBarView extends StatelessWidget implements PreferredSizeWidget {
   const AppBarView({
@@ -24,7 +25,7 @@ class AppBarView extends StatelessWidget implements PreferredSizeWidget {
       leading: leading != null
           ? IconButton(
               icon: Icon(leading),
-              onPressed: onPressed ?? () => Navigator.pop(context),
+              onPressed: onPressed ?? () => context.pop(),
             )
           : null,
       actions: actions,
