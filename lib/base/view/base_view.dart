@@ -5,6 +5,8 @@ import 'package:githubdummy/widgets/loading_view.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
+import '../../config/themes/theme.dart';
+
 abstract class BaseView<T extends BaseViewModel> extends StatelessWidget {
   final T viewModel;
   final Widget? child;
@@ -144,4 +146,86 @@ abstract class BaseView<T extends BaseViewModel> extends StatelessWidget {
 
   @protected
   Widget? buildBottomNavigationBar(BuildContext context) => null;
+
+  @protected
+  Widget buildDismissKeyboard(BuildContext context, Widget child) {
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: child,
+    );
+  }
+
+  @protected
+  void showSnackBar(BuildContext context, String message,
+      {Duration duration = const Duration(seconds: 2)}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        duration: duration,
+      ),
+    );
+  }
+
+  /// THEME
+  @protected
+  ThemeData getTheme(BuildContext context) {
+    Brightness brightness = MediaQuery.of(context).platformBrightness;
+    return brightness == Brightness.dark ? AppTheme.darkTheme : AppTheme.lightTheme;
+  }
+
+  @protected
+  TextTheme getTextTheme(BuildContext context) => getTheme(context).textTheme;
+
+  @protected
+  ColorScheme getColorScheme(BuildContext context) => getTheme(context).colorScheme;
+
+  @protected
+  IconThemeData getIconTheme(BuildContext context) => getTheme(context).iconTheme;
+
+  @protected
+  AppBarTheme getAppBarTheme(BuildContext context) => getTheme(context).appBarTheme;
+
+  @protected
+  ButtonThemeData getButtonTheme(BuildContext context) => getTheme(context).buttonTheme;
+
+  @protected
+  CheckboxThemeData getCheckboxTheme(BuildContext context) => getTheme(context).checkboxTheme;
+
+  @protected
+  InputDecorationTheme getInputDecorationTheme(BuildContext context) =>
+      getTheme(context).inputDecorationTheme;
+
+  @protected
+  ElevatedButtonThemeData getElevatedButtonTheme(BuildContext context) =>
+      getTheme(context).elevatedButtonTheme;
+
+  @protected
+  OutlinedButtonThemeData getOutlinedButtonTheme(BuildContext context) =>
+      getTheme(context).outlinedButtonTheme;
+
+  @protected
+  TextButtonThemeData getTextButtonTheme(BuildContext context) => getTheme(context).textButtonTheme;
+
+  @protected
+  DividerThemeData getDividerTheme(BuildContext context) => getTheme(context).dividerTheme;
+
+  @protected
+  IconButtonThemeData getIconButtonTheme(BuildContext context) => getTheme(context).iconButtonTheme;
+
+  @protected
+  RadioThemeData getRadioTheme(BuildContext context) => getTheme(context).radioTheme;
+
+  @protected
+  SwitchThemeData getSwitchTheme(BuildContext context) => getTheme(context).switchTheme;
+
+  @protected
+  FloatingActionButtonThemeData getFloatingActionButtonTheme(BuildContext context) =>
+      getTheme(context).floatingActionButtonTheme;
+
+  @protected
+  NavigationBarThemeData getNavigationBarTheme(BuildContext context) =>
+      getTheme(context).navigationBarTheme;
+
+  @protected
+  SearchBarThemeData getSearchBarTheme(BuildContext context) => getTheme(context).searchBarTheme;
 }
