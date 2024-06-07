@@ -14,6 +14,9 @@ abstract class BaseViewModel extends ChangeNotifier {
   FutureOr<void> _initState;
   FutureOr<void> get initState => _initState;
 
+  String? _errorMessage;
+  String? get errorMessage => _errorMessage;
+
   void setLoading(bool value) {
     _isLoading = value;
     notifyListeners();
@@ -50,5 +53,10 @@ abstract class BaseViewModel extends ChangeNotifier {
     scheduleMicrotask(() {
       if (!_isDisposed) notifyListeners();
     });
+  }
+
+  void setError(String? message) {
+    _errorMessage = message;
+    notifyListeners();
   }
 }

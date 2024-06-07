@@ -26,18 +26,96 @@ abstract class BaseView<T extends BaseViewModel> extends StatelessWidget {
   }
 
   Widget _buildScreen(BuildContext context, T viewModel, Widget? child) {
-    return !viewModel.isInitialized
-        ? const Center(child: CircularProgressIndicator())
-        : Scaffold(
-            appBar: _buildAppBar(context),
-            body: viewModel.isLoading
-                ? const Center(
-                    child: LoadingView(),
-                  )
-                : buildScreen(context),
-            bottomNavigationBar: buildBottomNavigationBar(context),
-          );
+    if (viewModel.errorMessage != null) {
+      return _buildError(context, viewModel.errorMessage!);
+    }
+
+    if (!viewModel.isInitialized) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    return _buildSafeArea(context, viewModel);
   }
+
+  Widget _buildSafeArea(BuildContext context, T viewModel) {
+    return SafeArea(
+      left: safeAreaLeft(),
+      top: safeAreaTop(),
+      right: safeAreaRight(),
+      bottom: safeAreaBottom(),
+      minimum: safeAreaMinimumPadding(),
+      maintainBottomViewPadding: maintainBottomViewPadding(),
+      child: wrapScaffoldWithSafeArea()
+          ? _buildScaffold(context, viewModel)
+          : _buildScaffoldBody(context, viewModel),
+    );
+  }
+
+  Widget _buildScaffold(BuildContext context, T viewModel) {
+    return Scaffold(
+      appBar: _buildAppBar(context),
+      body: _buildScaffoldBody(context, viewModel),
+      bottomNavigationBar: buildBottomNavigationBar(context),
+    );
+  }
+
+  Widget _buildScaffoldBody(BuildContext context, T viewModel) {
+    return viewModel.isLoading
+        ? const Center(
+            child: LoadingView(),
+          )
+        : buildScreen(context);
+  }
+
+  Widget _buildError(BuildContext context, String errorMessage) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(getErrorTitle()),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.error_outline, size: 48, color: Colors.red),
+            const SizedBox(height: 16),
+            Text(errorMessage, style: const TextStyle(fontSize: 18)),
+            const SizedBox(height: 24),
+            ElevatedButton(
+              onPressed: () {
+                viewModel.errorMessage!;
+                viewModel.init();
+              },
+              child: const Text('Retry'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  @protected
+  String getErrorTitle() => 'Error';
+
+  @protected
+  bool safeAreaLeft() => true;
+
+  @protected
+  bool safeAreaTop() => true;
+
+  @protected
+  bool safeAreaRight() => true;
+
+  @protected
+  bool safeAreaBottom() => true;
+
+  @protected
+  EdgeInsets safeAreaMinimumPadding() => EdgeInsets.zero;
+
+  @protected
+  bool maintainBottomViewPadding() => false;
+
+  @protected
+  bool wrapScaffoldWithSafeArea() => true;
 
   @protected
   String appBarTitle() => '';
