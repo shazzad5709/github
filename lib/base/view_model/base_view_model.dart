@@ -17,7 +17,7 @@ abstract class BaseViewModel extends ChangeNotifier {
   String? _errorMessage;
   String? get errorMessage => _errorMessage;
 
-  void setLoading(bool value) {
+  void startLoading(bool value) {
     _isLoading = value;
     notifyListeners();
   }
@@ -36,7 +36,7 @@ abstract class BaseViewModel extends ChangeNotifier {
     isLoading = false;
   }
 
-  void changeStatus() => isLoading = !isLoading;
+  void stopLoading() => isLoading = !isLoading;
 
   void reloadState() {
     if (!isLoading) notifyListeners();

@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:githubdummy/base/view/base_view.dart';
 import 'package:githubdummy/config/router/router_config.dart';
 import 'package:githubdummy/features/profile/view_model/profile_view_model.dart';
+import 'package:githubdummy/widgets/app_bar_view.dart';
 import 'package:githubdummy/widgets/card_view.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../constants/text_strings.dart';
 
 class ProfileScreenWithProvider extends StatelessWidget {
   const ProfileScreenWithProvider({super.key});
@@ -21,7 +24,9 @@ class ProfileScreen extends BaseView<ProfileViewModel> {
         );
 
   @override
-  String appBarTitle() => 'Profile';
+  PreferredSizeWidget? buildAppBar(BuildContext context) {
+    return const AppBarView(title: TextStrings.profile);
+  }
 
   @override
   Widget buildScreen(BuildContext context) {

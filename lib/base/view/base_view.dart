@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:githubdummy/base/view_model/base_view_model.dart';
 import 'package:githubdummy/widgets/app_bar_view.dart';
@@ -22,24 +23,12 @@ abstract class BaseView<T extends BaseViewModel> extends StatelessWidget {
     return ChangeNotifierProvider<T>(
       create: (context) => viewModel,
       child: Consumer<T>(
-        builder: _buildScreen,
+        builder: _buildSafeArea,
       ),
     );
   }
 
-  Widget _buildScreen(BuildContext context, T viewModel, Widget? child) {
-    if (viewModel.errorMessage != null) {
-      return _buildError(context, viewModel.errorMessage!);
-    }
-
-    if (!viewModel.isInitialized) {
-      return const Center(child: CircularProgressIndicator());
-    }
-
-    return _buildSafeArea(context, viewModel);
-  }
-
-  Widget _buildSafeArea(BuildContext context, T viewModel) {
+  Widget _buildSafeArea(BuildContext context, T viewModel, Widget? child) {
     return SafeArea(
       left: safeAreaLeft(),
       top: safeAreaTop(),
@@ -55,48 +44,26 @@ abstract class BaseView<T extends BaseViewModel> extends StatelessWidget {
 
   Widget _buildScaffold(BuildContext context, T viewModel) {
     return Scaffold(
-      appBar: _buildAppBar(context),
+      appBar: buildAppBar(context),
       body: _buildScaffoldBody(context, viewModel),
       bottomNavigationBar: buildBottomNavigationBar(context),
     );
   }
 
   Widget _buildScaffoldBody(BuildContext context, T viewModel) {
-    return viewModel.isLoading
-        ? const Center(
-            child: LoadingView(),
-          )
-        : buildScreen(context);
-  }
-
-  Widget _buildError(BuildContext context, String errorMessage) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(getErrorTitle()),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(Icons.error_outline, size: 48, color: Colors.red),
-            const SizedBox(height: 16),
-            Text(errorMessage, style: const TextStyle(fontSize: 18)),
-            const SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: () {
-                viewModel.errorMessage!;
-                viewModel.init();
-              },
-              child: const Text('Retry'),
-            ),
-          ],
+    return Stack(
+      children: [
+        buildScreen(context),
+        Visibility(
+          visible: viewModel.isLoading || viewModel.isInitialized,
+          child: const LoadingView(),
         ),
-      ),
+      ],
     );
   }
 
   @protected
-  String getErrorTitle() => 'Error';
+  String errorMessage;
 
   @protected
   bool safeAreaLeft() => true;
@@ -120,26 +87,7 @@ abstract class BaseView<T extends BaseViewModel> extends StatelessWidget {
   bool wrapScaffoldWithSafeArea() => true;
 
   @protected
-  String appBarTitle() => '';
-
-  @protected
-  IconData? appBarLeadingIcon() => null;
-
-  @protected
-  void appBarLeadingOnPressed(BuildContext context) => context.pop();
-
-  @protected
-  List<Widget>? appBarActions(BuildContext context) => null;
-
-  @protected
-  PreferredSizeWidget? _buildAppBar(BuildContext context) {
-    return AppBarView(
-      title: appBarTitle(),
-      leading: appBarLeadingIcon(),
-      onPressed: () => appBarLeadingOnPressed(context),
-      actions: appBarActions(context),
-    );
-  }
+  PreferredSizeWidget? buildAppBar(BuildContext context);
 
   @protected
   Widget buildScreen(BuildContext context);
@@ -153,6 +101,11 @@ abstract class BaseView<T extends BaseViewModel> extends StatelessWidget {
       onTap: () => FocusScope.of(context).unfocus(),
       child: child,
     );
+  }
+
+  @protected
+  void showError(BuildContext context) {
+    showSnackBar(context, errorMessage);
   }
 
   @protected
