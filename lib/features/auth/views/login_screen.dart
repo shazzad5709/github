@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:githubdummy/config/router/router_config.dart';
+import 'package:githubdummy/router/router_config.dart';
 import 'package:githubdummy/constants/image_url.dart';
 import 'package:githubdummy/constants/text_strings.dart';
 import 'package:githubdummy/features/auth/view_model/auth_view_model.dart';

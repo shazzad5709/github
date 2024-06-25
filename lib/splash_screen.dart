@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:githubdummy/config/router/router_config.dart';
+import 'package:githubdummy/router/router_config.dart';
 import 'package:githubdummy/constants/image_url.dart';
 import 'package:githubdummy/constants/text_strings.dart';
 import 'package:go_router/go_router.dart';

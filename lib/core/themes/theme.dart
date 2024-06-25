@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:githubdummy/config/themes/widget_themes/navigation_bar_theme.dart';
-import 'package:githubdummy/config/themes/widget_themes/floating_action_button_theme.dart';
-import 'package:githubdummy/config/themes/widget_themes/primary_button_theme.dart';
-import 'package:githubdummy/config/themes/widget_themes/search_bar_theme.dart';
-import 'package:githubdummy/config/themes/widget_themes/secondary_button_theme.dart';
-import 'package:githubdummy/config/themes/widget_themes/switch_theme.dart';
-import 'package:githubdummy/config/themes/widget_themes/text_button_theme.dart';
+import 'package:githubdummy/core/themes/widget_themes/navigation_bar_theme.dart';
+import 'package:githubdummy/core/themes/widget_themes/floating_action_button_theme.dart';
+import 'package:githubdummy/core/themes/widget_themes/primary_button_theme.dart';
+import 'package:githubdummy/core/themes/widget_themes/search_bar_theme.dart';
+import 'package:githubdummy/core/themes/widget_themes/secondary_button_theme.dart';
+import 'package:githubdummy/core/themes/widget_themes/switch_theme.dart';
+import 'package:githubdummy/core/themes/widget_themes/text_button_theme.dart';
 
-import 'widget_themes/appbar_theme.dart';
+import '../../core/themes/widget_themes/appbar_theme.dart';
 import 'widget_themes/checkbox_theme.dart';
 import 'widget_themes/icon_button_theme.dart';
-import 'widget_themes/text_theme.dart';
+import '../../core/themes/widget_themes/text_theme.dart';
 import 'widget_themes/input_decoration_theme.dart';
 
 class AppTheme {

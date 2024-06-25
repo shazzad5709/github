@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:githubdummy/base/view/base_view.dart';
-import 'package:githubdummy/config/router/router_config.dart';
+import 'package:githubdummy/core/base/view/base_view.dart';
+import 'package:githubdummy/router/router_config.dart';
 import 'package:githubdummy/features/profile/view_model/profile_view_model.dart';
 import 'package:githubdummy/widgets/app_bar_view.dart';
 import 'package:githubdummy/widgets/card_view.dart';
@@ -18,10 +18,7 @@ class ProfileScreenWithProvider extends StatelessWidget {
 }
 
 class ProfileScreen extends BaseView<ProfileViewModel> {
-  ProfileScreen({super.key})
-      : super(
-          viewModel: ProfileViewModel(),
-        );
+  ProfileScreen({super.key});
 
   @override
   PreferredSizeWidget? buildAppBar(BuildContext context) {

@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:github/github.dart';
-import 'package:githubdummy/base/view_model/base_view_model.dart';
+import 'package:githubdummy/core/base/view_model/base_view_model.dart';
 import 'package:githubdummy/core/data/repo/login_controller.dart';
 import 'package:githubdummy/core/di/locator.dart';
 import 'package:githubdummy/core/services/auth/auth_service.dart';

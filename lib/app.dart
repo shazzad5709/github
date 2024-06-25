@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:githubdummy/config/router/router_config.dart';
-import 'package:githubdummy/config/themes/theme.dart';
+import 'package:githubdummy/router/router_config.dart';
+import 'package:githubdummy/core/themes/theme.dart';
 import 'package:githubdummy/constants/text_strings.dart';
 import 'package:githubdummy/features/auth/view_model/auth_view_model.dart';
 import 'package:githubdummy/features/bottom_nav/view_model/bottom_nav_view_model.dart';
