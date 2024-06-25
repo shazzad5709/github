@@ -1,12 +1,14 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:github/github.dart';
+import 'package:githubdummy/core/base/view_model/base_view_model.dart';
 import 'package:githubdummy/core/data/repo/login_controller.dart';
 import 'package:githubdummy/core/di/locator.dart';
 import 'package:githubdummy/core/services/auth/auth_service.dart';
 
-class ProfileViewModel extends ChangeNotifier {
+class ProfileViewModel extends BaseViewModel {
   final AuthService _authService = locator.get<AuthService>();
 
   CurrentUser? _user;
@@ -17,10 +19,6 @@ class ProfileViewModel extends ChangeNotifier {
 
   bool _isFetched = false;
   bool get isFetched => _isFetched;
-
-  ProfileViewModel() {
-    _getAuthenticatedUser();
-  }
 
   final LoginController loginController = locator.get<LoginController>();
 
@@ -36,5 +34,10 @@ class ProfileViewModel extends ChangeNotifier {
     }).catchError(
       (e) => print(e),
     );
+  }
+
+  @override
+  Future<void> init() async {
+    _getAuthenticatedUser();
   }
 }

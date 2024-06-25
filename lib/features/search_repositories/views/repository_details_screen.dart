@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:githubdummy/config/router/router_config.dart';
+import 'package:githubdummy/router/router_config.dart';
 import 'package:githubdummy/constants/text_strings.dart';
 import 'package:go_router/go_router.dart';
 import 'widgets/repo_header.dart';

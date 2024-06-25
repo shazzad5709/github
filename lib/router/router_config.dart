@@ -1,5 +1,5 @@
 import 'package:get_it/get_it.dart';
-import 'package:githubdummy/config/router/bottom_nav_config.dart';
+import 'package:githubdummy/router/bottom_nav_config.dart';
 import 'package:githubdummy/constants/text_strings.dart';
 import 'package:githubdummy/features/auth/view_model/auth_view_model.dart';
 import 'package:githubdummy/features/auth/views/login_screen.dart';

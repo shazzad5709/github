@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:githubdummy/config/router/router_config.dart';
+import 'package:githubdummy/router/router_config.dart';
 import 'package:githubdummy/constants/text_strings.dart';
 import 'package:githubdummy/features/search_repositories/models/repository_ui_model.dart';
 import 'package:githubdummy/features/search_repositories/view_model/search_repository_view_model.dart';
